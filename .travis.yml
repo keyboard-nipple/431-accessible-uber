@@ -1,12 +1,16 @@
 language: ruby
 rvm:
- - 2.6
+- 2.6
 services:
- - postgresql
+- postgresql
 notifications:
   email: false
-  
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+- psql -c 'create database travis_ci_test;' -U postgres
 script:
-  - bundle exec rails db:migrate RAILS_ENV=test
+- bundle exec rails db:migrate RAILS_ENV=test
+deploy:
+  provider: heroku
+  api_key:
+    secure: IlMqRbJ8rpnnZrzNUm/05TxL5kl0yr5msNT7eD+Ct8R2h0LrTMsZAXXTO5pbUOlGRBwTLkatVRUsFuHnMiIpY1jfnn6NL3ZDsmvxhoa7ZU/PNxIMVgvsFBK5d6g+4q2I5Cv/5xohaqiLpWqmhF/8tX4jox+MZ4xlsUOFEOMUYyIjY8fiXpMUxEyP4HwMg3fRIhPlkkxkN2vpD5CgrLJr7hFpkIe6/IPeoX00gufUSrlY2vTvGaSxVG3JItPv9aD4CAGIoteJdBdLIn8aU+KIvbFIzcP+SrVBhsABXK2hcwi4tcjh4ke+q+zixCUQFwaT0Ij7KqcUGKhrIFe5NiFYJfxWQjsQ27cTEikHOYAjNf3BVg/NmrARpPBVmNgdqspkMKBTOE7foI4MF0Ixg9v7nlplQONDKK58OJlhYvYI5NCt6PbW4aO6uNMco9nvO2ceYYbexbEXsUMOBhzpLB7tYqAxOTmmuWYf6mmUrfwRWmtFVqpcCVSLA8ktEd4d3H1Zi+ypwGVOUg78Pr5JEg0tO+sf1RVYYHi/8MdUh+qH/JmP4muAC0KE7DNlwS5bDwSRNLZDTtFbvveXSNlPnfJhr1q4SLnRjQlsdcvyvCEHfHX/zsZElf5RiwV+jFdKd1081M4EcUngVCzcXGBCTxUcAmxQAVvgjx2CM9srrHGzwiU=
+  app: accessible-uber
