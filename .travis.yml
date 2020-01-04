@@ -5,3 +5,8 @@ services:
  - postgresql
 notifications:
   email: false
+  
+before_script:
+  - psql -c "CREATE DATABASE ruby-getting-started_test;" -U postgres
+script:
+  - bundle exec rails db:migrate RAILS_ENV=test
