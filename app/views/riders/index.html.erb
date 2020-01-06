@@ -1,0 +1,19 @@
+<h1>Listing Riders</h1>
+ 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>E-mail</th>
+    <th>Date of Birth</th>
+    <th></th>
+  </tr>
+ 
+  <% @riders.each do |rider| %>
+    <tr>
+      <td><%= rider.name %></td>
+      <td><%= rider.email %></td>
+      <td><%= rider.dob %></td>
+      <td><%= link_to 'Show', rider_path(rider) %></td>
+    </tr>
+  <% end %>
+</table>
