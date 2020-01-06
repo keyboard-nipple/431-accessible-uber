@@ -1,20 +1,26 @@
-<%= form_with scope: :rider, url: riders_path, local: true do |form| %>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
- 
-  <p>
-    <%= form.label :email %><br>
-    <%= form.text_area :email %>
-  </p>
-  
-  <p>
-    <%= form.label :dob %><br>
-    <%= form.text_area :dob %>
-  </p>
-  
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+<div class="container">
+  <div class="col-sm">
+    <h1 class="display-4">Create an account</h1>
+    
+    <%= form_with scope: :rider, url: riders_path, local: true do |form| %>
+      <p>
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+      </p>
+     
+      <p>
+        <%= form.label :email %><br>
+        <%= form.text_field :email %>
+      </p>
+      
+      <p>
+        <%= form.label "Date of Birth" %><br>
+        <%= form.text_field :dob %>
+      </p>
+      
+      <p>
+        <%= form.submit "Create Account" %>
+      </p>
+    <% end %>  
+  </div>
+</div>
