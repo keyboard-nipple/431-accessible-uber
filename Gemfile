@@ -40,3 +40,5 @@ gem 'puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# For google authentication
+gem 'omniauth-google-oauth2'
