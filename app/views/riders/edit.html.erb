@@ -1,0 +1,37 @@
+<h1>Edit Rider</h1>
+
+
+<%= form_with(model: @rider, local: true) do |form| %>
+ 
+    <% if @rider.errors.any? %>
+    <div id="error_explanation">
+        <h2>
+        <%= pluralize(@rider.errors.count, "error") %> prohibited
+        this rider from being saved:
+      </h2>
+      <ul>
+        <% @rider.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= form.label :email %><br>
+    <%= form.text_field :email %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>
+ 
+<%= link_to 'Edit', edit_rider_path(@rider) %> |
+<%= link_to 'Back', rider_path %>
