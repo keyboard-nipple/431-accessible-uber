@@ -1,0 +1,21 @@
+<h1>Listing Drivers</h1>
+ 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>E-mail</th>
+    <th>Date of Birth</th>
+    <th></th>
+  </tr>
+ 
+  <% @drivers.each do |driver| %>
+    <tr>
+      <td><%= driver.name %></td>
+      <td><%= driver.email %></td>
+      <td><%= driver.dob %></td>
+      <td><%= link_to 'Show', driver_path(driver) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New driver', new_driver_path %>
