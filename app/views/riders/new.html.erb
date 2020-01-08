@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="col-sm">
+    <h1 class="display-4">Create an account</h1>
+    
+    <%= form_with scope: :rider, url: riders_path, local: true do |form| %>
+    
+      <%= form.hidden_field :uid, :value => @user_info["uid"] %>
+      <%= form.hidden_field :name, :value => @user_info["info"]["name"] %>
+      <%= form.hidden_field :email, :value => @user_info["info"]["email"] %>
+    
+      <p>
+        <%= form.label "Zip Code" %><br>
+        <%= form.text_field :zip_code %>
+      </p>
+    
+      <p>
+        <%= form.label "Date of Birth" %><br>
+        <%= form.text_field :dob %>
+      </p>
+      
+      <p>
+        <%= form.submit "Create Account" %>
+      </p>
+    <% end %>  
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="col-sm text-center">
+    <h1 class="display-4">Hello, <%= @rider.name %></h1>
+    <div>Here's the information we have on file from you:</div>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"></th>
+          <td>Name</td>
+          <td><%= @rider.name %></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>E-mail Address</td>
+          <td><%= @rider.email %></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>Zip Code</td>
+          <td><%= @rider.zip_code %></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>Date of Birth</td>
+          <td><%= @rider.dob %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
