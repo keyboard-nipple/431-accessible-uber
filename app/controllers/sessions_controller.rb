@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
   def create
     session[:current_user_id] = auth_hash["uid"]
+    session[:user_name] = auth_hash["info"]["name"]
+    session[:user_email] = auth_hash["info"]["email"]
     
     case session[:user_type]
     when "rider"
