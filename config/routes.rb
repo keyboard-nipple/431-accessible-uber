@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'drivers/index'
-  resources :widgets
   resources :riders
   resources :drivers
   resources :sessions, only: [:create, :destroy]
