@@ -4,7 +4,7 @@ class CreateDrivers < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :email
       t.string :dob
-      t.string :license#
+      t.string :license
       t.string :uid
 
       t.timestamps

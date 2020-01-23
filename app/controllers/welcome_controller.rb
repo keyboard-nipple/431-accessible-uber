@@ -10,4 +10,9 @@ class WelcomeController < ApplicationController
     session[:user_type] = "rider"
     redirect_to "/auth/google_oauth2"
   end
+  
+  def login_as_driver
+    session[:user_type] = "driver"
+    redirect_to "/auth/google_oauth2"
+  end
 end

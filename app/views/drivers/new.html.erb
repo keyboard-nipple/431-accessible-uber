@@ -4,13 +4,13 @@
     
     <%= form_with scope: :driver, url: drivers_path, local: true do |form| %>
     
-      <%= form.hidden_field :uid, :value => @user_info["uid"] %>
-      <%= form.hidden_field :name, :value => @user_info["info"]["name"] %>
-      <%= form.hidden_field :email, :value => @user_info["info"]["email"] %>
+      <%= form.hidden_field :uid, :value => session["uid"] %>
+      <%= form.hidden_field :name, :value => session["user_name"] %>
+      <%= form.hidden_field :email, :value => session["user_email"] %>
     
       <p>
-        <%= form.label "Zip Code" %><br>
-        <%= form.text_field :zip_code %>
+        <%= form.label "Driver's License No." %><br>
+        <%= form.text_field :license %>
       </p>
     
       <p>
@@ -19,7 +19,7 @@
       </p>
       
       <p>
-        <%= form.submit "Create Account" %>
+        <%= form.submit "Create Account", :class => "btn btn-primary" %>
       </p>
     <% end %>  
   </div>

@@ -36,5 +36,11 @@ RSpec.describe SessionsController, type: :controller do
       get :create
       expect(response).to redirect_to "/riders/new"
     end
+    
+    it "should redirect to drivers#new if session is of type rider" do
+      session[:user_type] = "driver"
+      get :create
+      expect(response).to redirect_to "/drivers/new"
+    end
   end
 end
