@@ -42,6 +42,7 @@ gem 'puma'
 
 group :development, :test do
   gem 'rspec-rails',      ">= 4.0.0.beta2"
+  gem 'simplecov', require: false
 end
 
 # For google authentication
