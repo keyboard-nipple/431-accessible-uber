@@ -8,13 +8,7 @@ class RidersController < ApplicationController
   end
   
   def new
-    if Rider.exists?(uid: auth_hash["uid"])
-      @rider = Rider.find_by(uid: auth_hash["uid"])
-      redirect_to @rider
-    else
-      @rider = Rider.new
-      @user_info = auth_hash
-    end
+    @rider = Rider.new
   end
   
   def edit
@@ -48,9 +42,5 @@ class RidersController < ApplicationController
   private
   def rider_params
     params.require(:rider) .permit(:uid, :name, :email, :zip_code, :dob)
-  end
-
-  def auth_hash
-    request.env['omniauth.auth']
   end
 end

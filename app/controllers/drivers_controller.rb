@@ -1,5 +1,5 @@
-class DriverController < ApplicationController
-    def index
+class DriversController < ApplicationController
+  def index
     @drivers = Driver.all
   end
   
@@ -8,13 +8,7 @@ class DriverController < ApplicationController
   end
   
   def new
-    if Driver.exists?(uid: auth_hash["uid"])
-      @driver = Driver.find_by(uid: auth_hash["uid"])
-      redirect_to @driver
-    else
-      @driver = Driver.new
-      @user_info = auth_hash
-    end
+    @driver = Driver.new
   end
   
   def edit
@@ -47,10 +41,6 @@ class DriverController < ApplicationController
   
   private
   def driver_params
-    params.require(:driver) .permit(:uid, :name, :email, :zip_code, :dob)
-  end
-
-  def auth_hash
-    request.env['omniauth.auth']
+    params.require(:driver) .permit(:uid, :name, :email, :license, :dob)
   end
 end
