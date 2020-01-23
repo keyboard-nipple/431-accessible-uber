@@ -40,5 +40,9 @@ gem 'puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :development, :test do
+  gem 'rspec-rails',      ">= 3.0.0"
+end
+
 # For google authentication
 gem 'omniauth-google-oauth2'
