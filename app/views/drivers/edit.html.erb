@@ -1,0 +1,42 @@
+<h1>Edit Driver</h1>
+
+
+<%= form_with(model: @driver, local: true) do |form| %>
+ 
+    <% if @driver.errors.any? %>
+    <div id="error_explanation">
+        <h2>
+        <%= pluralize(@driver.errors.count, "error") %> prohibited
+        this driver from being saved:
+      </h2>
+      <ul>
+        <% @driver.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= form.label :email %><br>
+    <%= form.text_field :email %>
+  </p>
+ 
+  <p>
+    <%= form.label "Blind Accessibility" %> <br />
+    <%= form.check_box :blind_accessibility %> <br />
+  </p>
+    
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>
+ 
+<%= link_to 'Edit', edit_driver_path(@driver) %> |
+<%= link_to 'Back', driver_path %>

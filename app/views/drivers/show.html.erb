@@ -31,6 +31,12 @@
           <td>Date of Birth</td>
           <td><%= @driver.dob %></td>
         </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>Blind Accessibility</td>
+          <td><%= @driver.blind_accessibility %></td>
+        </tr>
+        <td><%= link_to 'Edit', edit_driver_path(@driver) %></td>
       </tbody>
     </table>
   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_08_004816) do
+ActiveRecord::Schema.define(version: 2020_02_07_022713) do
 
   create_table "drivers", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_01_08_004816) do
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "blind_accessibility"
   end
 
   create_table "riders", force: :cascade do |t|
@@ -28,16 +29,8 @@ ActiveRecord::Schema.define(version: 2020_01_08_004816) do
     t.string "dob"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "uid"
     t.string "zip_code"
-  end
-
-  create_table "widgets", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "stock"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "uid"
   end
 
 end
