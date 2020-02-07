@@ -33,8 +33,18 @@
         </tr>
         <tr>
           <th scope="row"></th>
-          <td>Blind Accessibility</td>
-          <td><%= @driver.blind_accessibility %></td>
+          <td> Certifications </td>
+          <td> 
+          <!-- app/views/posts/show.html.erb -->
+        <% if @driver.certification.attached? %>
+        <!-- @post.image.present? will always return true, use attached? to check presence -->
+        <p>
+          <strong>Image:</strong>
+          <br>
+          <%= url_for(@driver.certification) %>
+          </p>
+          <% end %>
+          </td>
         </tr>
         <td><%= link_to 'Edit', edit_driver_path(@driver) %></td>
       </tbody>

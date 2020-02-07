@@ -4,7 +4,7 @@ class CreateRiders < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :email
       t.string :dob
-
+    
       t.timestamps
     end
   end

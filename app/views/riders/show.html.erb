@@ -31,6 +31,27 @@
           <td>Date of Birth</td>
           <td><%= @rider.dob %></td>
         </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>Blind Accessibility</td>
+          <td><%= @rider.blind_accessibility %></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>Deaf</td>
+          <td><%= @rider.deaf %></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>Service Animal</td>
+          <td><%= @rider.service_animal %></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>Wheelchair</td>
+          <td><%= @rider.wheelchair %></td>
+        </tr>
+         <td><%= link_to 'Edit', edit_rider_path(@rider) %></td>
       </tbody>
     </table>
   </div>

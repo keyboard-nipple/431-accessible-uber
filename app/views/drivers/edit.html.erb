@@ -26,7 +26,10 @@
     <%= form.label :email %><br>
     <%= form.text_field :email %>
   </p>
- 
+  <p>
+   <%= form.label "Certification" %>
+   <%= form.file_field :certification %> <br>
+  </p>
   <p>
     <%= form.label "Blind Accessibility" %> <br />
     <%= form.check_box :blind_accessibility %> <br />
