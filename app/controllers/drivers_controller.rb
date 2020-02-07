@@ -25,10 +25,8 @@ class DriversController < ApplicationController
   end
   
   def update
-    puts params[:certification]
     @driver = Driver.find(params[:id])
     if @driver.update(driver_params)
-      @driver.certification.attach(params[:certification])
       redirect_to @driver
     else
       render 'edit'
