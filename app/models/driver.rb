@@ -1,3 +1,3 @@
 class Driver < ApplicationRecord
-    has_one_attached :certification
+    has_many :certifications
 end

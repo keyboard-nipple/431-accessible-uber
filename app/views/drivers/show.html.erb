@@ -40,6 +40,11 @@
             <% end %>
           </td>
         </tr>
+        <tr>
+          <th scope="row"></th>
+          <td> Date of Certification</td>
+          <td> <%= @driver.date %></td>
+        </tr> 
       </tbody>
     </table>
     <%= link_to "Update Profile", edit_driver_path(@driver), :class => "btn btn-primary" %>
