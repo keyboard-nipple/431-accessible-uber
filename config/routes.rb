@@ -2,9 +2,8 @@ Rails.application.routes.draw do
   get 'drivers/index'
   resources :riders
   resources :drivers do
-    resources :comments
+    resources :certifications
   end
-  resources :certifications
   resources :sessions, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.

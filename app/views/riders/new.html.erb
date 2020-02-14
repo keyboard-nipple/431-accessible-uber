@@ -4,7 +4,7 @@
     
     <%= form_with scope: :rider, url: riders_path, local: true do |form| %>
     
-      <%= form.hidden_field :uid, :value => session["uid"] %>
+      <%= form.hidden_field :uid, :value => session["current_user_id"] %>
       <%= form.hidden_field :name, :value => session["user_name"] %>
       <%= form.hidden_field :email, :value => session["user_email"] %>
     

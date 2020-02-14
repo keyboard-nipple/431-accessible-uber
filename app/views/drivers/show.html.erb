@@ -30,23 +30,28 @@
           <th scope="row"></th>
           <td>Date of Birth</td>
           <td><%= @driver.dob %></td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td> Certifications </td>
-          <td>
-            <% if @driver.certification.attached? %>
-              <%= image_tag @driver.certification %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td> Date of Certification</td>
-          <td> <%= @driver.date %></td>
-        </tr> 
+        </tr>   
       </tbody>
     </table>
+    
+    <h2>Certifications</h2>
+    <% @driver.certifications.each do |certification| %>
+      <p>
+        <strong>Description:</strong>
+        <%= certification.name %>
+      </p>
+      <p>
+        <strong>Date:</strong>
+        <%= certification.created_at %>
+      </p>
+     
+      <p>
+        <strong>Image:</strong>
+        <% if certification.image.attached? %>
+          <%= image_tag(certification.image, height: 200, width:200 ) %>
+        <% end %>
+      </p>
+    <% end %>
     <%= link_to "Update Profile", edit_driver_path(@driver), :class => "btn btn-primary" %>
   </div>
 </div>

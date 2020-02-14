@@ -4,6 +4,9 @@ class SessionsController < ApplicationController
     session[:user_name] = auth_hash["info"]["name"]
     session[:user_email] = auth_hash["info"]["email"]
     
+    puts "why"
+    puts Rider.exists?(uid: session[:current_user_id])
+    
     case session[:user_type]
     when "rider"
       if (Rider.exists?(uid: session[:current_user_id]))
@@ -13,7 +16,7 @@ class SessionsController < ApplicationController
       end
     when "driver"
       if (Driver.exists?(uid: session[:current_user_id]))
-        redirect_to Rider.find_by(uid: session[:current_user_id])
+        redirect_to Driver.find_by(uid: session[:current_user_id])
       else
         redirect_to new_driver_path
       end

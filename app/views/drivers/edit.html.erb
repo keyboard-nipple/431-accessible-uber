@@ -26,15 +26,26 @@
     <%= form.label :email %><br>
     <%= form.text_field :email %>
   </p>
-  <p>
-   <%= form.label :certification %>
-   <%= form.file_field :certification %> <br>
-  </p>
     
   <p>
     <%= form.submit %>
   </p>
  
+<% end %>
+
+<h2>Upload Certifications:</h2>
+<%= form_with(model: [ @driver, @driver.certifications.build ], local: true) do |form| %>
+  <p>
+   <%= form.label :image %> <br>
+   <%= form.file_field :image %> <br>
+  </p>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
 <% end %>
  
 <%= link_to 'Edit', edit_driver_path(@driver) %> |
