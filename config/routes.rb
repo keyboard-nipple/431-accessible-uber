@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  get 'admins/index'
+  get 'admin/index'
   get 'drivers/index'
   resources :riders
   resources :drivers do
     resources :certifications
   end
+  resources :admins
   resources :sessions, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -15,6 +18,9 @@ Rails.application.routes.draw do
   
   get '/rider_login' => 'welcome#login_as_rider'
   get '/driver_login' => 'welcome#login_as_driver'
+  get '/admin_login' => 'welcome#login_as_admin'
+  
+  get '/certifications', to: 'certifications#index'
   
   get '/auth/google_oauth2/callback', to: 'sessions#create'
 

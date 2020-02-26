@@ -12,22 +12,18 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row"></th>
           <td>Name</td>
           <td><%= @driver.name %></td>
         </tr>
         <tr>
-          <th scope="row"></th>
           <td>E-mail Address</td>
           <td><%= @driver.email %></td>
         </tr>
         <tr>
-          <th scope="row"></th>
           <td>License Number</td>
           <td><%= @driver.license %></td>
         </tr>
         <tr>
-          <th scope="row"></th>
           <td>Date of Birth</td>
           <td><%= @driver.dob %></td>
         </tr>   
@@ -35,23 +31,36 @@
     </table>
     
     <h2>Certifications</h2>
-    <% @driver.certifications.each do |certification| %>
-      <p>
-        <strong>Description:</strong>
-        <%= certification.name %>
-      </p>
-      <p>
-        <strong>Date:</strong>
-        <%= certification.created_at %>
-      </p>
-     
-      <p>
-        <strong>Image:</strong>
-        <% if certification.image.attached? %>
-          <%= image_tag(certification.image, height: 200, width:200 ) %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Description</th>
+          <th scope="col">Last Updated</th>
+          <th scope="col">Approval Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @driver.certifications.each do |certification| %>
+          <tr>
+            <td>  
+              <% if certification.image.attached? %>
+              <%= image_tag(certification.image, height: 200, width:200 ) %>
+              <% end %>
+            </td>
+            <td><%= certification.name %></td>
+            <td><%= certification.updated_at.strftime("%m/%d/%Y") %></td>
+            <td>
+              <% if !certification.approved %>
+                <p>Pending</p>
+              <% else %>
+                <% certification.approved %>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-      </p>
-    <% end %>
+      </tbody>
+    </table>
     <%= link_to "Update Profile", edit_driver_path(@driver), :class => "btn btn-primary" %>
   </div>
 </div>

@@ -1,4 +1,15 @@
 class CertificationsController < ApplicationController
+  def index
+    @drivers = Driver.all
+    @certifications = []
+    
+    @drivers.each do |driver|
+      driver.certifications.each do |certification|
+        @certifications.push(certification)
+      end
+    end
+  end
+  
   def create
     @driver = Driver.find(params[:driver_id])
     @certification = @driver.certifications.create(certification_params)

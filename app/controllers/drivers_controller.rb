@@ -36,12 +36,6 @@ class DriversController < ApplicationController
   def destroy
     @driver = Driver.find(params[:id])
     @driver.destroy
-    redirect_to driver_path
-  end
-  
-  def destroy_account
-    @driver = Driver.find(params[:id])
-    @driver.destroy_account
     redirect_to "/"
   end
   
