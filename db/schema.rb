@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_07_035917) do
+ActiveRecord::Schema.define(version: 2020_02_26_020630) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -58,13 +58,15 @@ ActiveRecord::Schema.define(version: 2020_02_07_035917) do
     t.boolean "wheelchair"
   end
 
-  create_table "widgets", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "stock"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "rides", force: :cascade do |t|
+    t.text "origin"
+    t.text "destination"
+    t.integer "rider_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rider_id"], name: "index_rides_on_rider_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "rides", "riders"
 end

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'drivers/index'
-  resources :riders
+  resources :riders do
+    resources :rides
+  end
   resources :drivers
   resources :sessions, only: [:create, :destroy]
 
