@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   
   get '/rider_login' => 'welcome#login_as_rider'
   get '/driver_login' => 'welcome#login_as_driver'
+  get '/rides', to: 'rides#index'
   
   get '/auth/google_oauth2/callback', to: 'sessions#create'
 

@@ -1,0 +1,16 @@
+<h1>Listing Rides</h1>
+ 
+<table>
+  <tr>
+    <th>Origin</th>
+    <th>Destination</th>
+    <th></th>
+  </tr>
+ 
+  <% @rides.each do |ride| %>
+    <tr>
+      <td><%= ride.origin %></td>
+      <td><%= ride.destination %></td>
+    </tr>
+  <% end %>
+</table>

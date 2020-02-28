@@ -5,6 +5,10 @@ class RidesController < ApplicationController
       redirect_to rider_path(@rider)
   end
   
+  def index
+    @rides = Ride.all
+  end
+  
   private
     def ride_params
       params.require(:ride).permit(:origin, :destination)
