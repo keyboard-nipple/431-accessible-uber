@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get 'drivers/index'
   resources :riders
   resources :drivers do
-    resources :certifications
+    resources :certifications do 
+      get 'approve', :on => :member
+      get 'reject', :on => :member
+    end
   end
   resources :admins
   resources :sessions, only: [:create, :destroy]

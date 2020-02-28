@@ -1,7 +1,7 @@
 <h1>Edit Driver</h1>
 
 
-<%= form_with(model: @driver, local: true) do |form| %>
+<%= form_with(model: [ @driver, @driver.certifications.build ], local: truelocal: true) do |form| %>
  
     <% if @driver.errors.any? %>
     <div id="error_explanation">

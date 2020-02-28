@@ -1,13 +1,6 @@
 class CertificationsController < ApplicationController
   def index
     @drivers = Driver.all
-    @certifications = []
-    
-    @drivers.each do |driver|
-      driver.certifications.each do |certification|
-        @certifications.push(certification)
-      end
-    end
   end
   
   def create
@@ -15,9 +8,19 @@ class CertificationsController < ApplicationController
     @certification = @driver.certifications.create(certification_params)
     redirect_to driver_path(@driver)
   end
+  
+  def approve
+    @certification = Certification.find(params[:id])
+    @certification.update(approved: true)
+  end
+  
+  def reject
+    @certification = Certification.find(params[:id])
+    @certification.update(approved: false)
+  end
  
   private
     def certification_params
-      params.require(:certification).permit(:name, :image)
+      params.require(:certification).permit(:id, :name, :image)
     end
 end
