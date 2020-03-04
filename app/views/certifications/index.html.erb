@@ -14,20 +14,20 @@
         <% @drivers.each do |driver| %>
           <% driver.certifications.each do |certification| %>
             <% if certification.approved == nil %>
-              <tr>
-                <td><%= driver.name %></td>
-                <td>  
-                  <% if certification.image.attached? %>
-                  <%= image_tag(certification.image, height: 200, width:200 ) %>
-                  <% end %>
-                </td>
-                <td><%= certification.name %></td>
-                <td><%= certification.updated_at.strftime("%m/%d/%Y") %></td>
-                <td>
-                  <%= link_to "Approve", approve_driver_certification_path(driver, certification), :class => "btn btn-primary", :remote => true %>
-                  <%= link_to "Reject", reject_driver_certification_path(driver, certification), :class => "btn btn-primary", :remote => true %>
-                </td>
-              </tr>
+                <tr>
+                  <td><%= driver.name %></td>
+                  <td>  
+                    <% if certification.image.attached? %>
+                    <%= image_tag(certification.image, height: 200, width:200 ) %>
+                    <% end %>
+                  </td>
+                  <td><%= certification.name %></td>
+                  <td><%= certification.updated_at.strftime("%m/%d/%Y") %></td>
+                  <td>
+                    <%= link_to "Approve", approve_driver_certification_path(driver, certification), :class => "btn btn-primary", :remote => true %>
+                    <%= link_to "Reject", reject_driver_certification_path(driver, certification), :class => "btn btn-primary", :remote => true %>
+                  </td>
+                </tr>
             <% end %>
           <% end %>
         <% end %>

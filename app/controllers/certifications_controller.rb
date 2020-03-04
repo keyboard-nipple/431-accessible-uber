@@ -12,11 +12,21 @@ class CertificationsController < ApplicationController
   def approve
     @certification = Certification.find(params[:id])
     @certification.update(approved: true)
+    
+    respond_to do |format|
+     format.js
+     # format.html { redirect_to(links_url) }
+    end
   end
   
   def reject
     @certification = Certification.find(params[:id])
     @certification.update(approved: false)
+    
+   respond_to do |format|
+     format.js
+     # format.html { redirect_to(links_url) }
+    end
   end
  
   private

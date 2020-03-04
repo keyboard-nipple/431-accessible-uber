@@ -1,7 +1,7 @@
 <h1>Edit Driver</h1>
 
 
-<%= form_with(model: [ @driver, @driver.certifications.build ], local: truelocal: true) do |form| %>
+<%= form_with(model: @driver, local: true) do |form| %>
  
     <% if @driver.errors.any? %>
     <div id="error_explanation">
@@ -25,6 +25,16 @@
   <p>
     <%= form.label :email %><br>
     <%= form.text_field :email %>
+  </p>
+  
+  <p>
+    <%= form.label :dob %> <br>
+    <%= form.text_field :dob %>
+  </p>
+  
+  <p>
+    <%= form.label :license %> <br>
+    <%= form.text_field :license %>
   </p>
     
   <p>

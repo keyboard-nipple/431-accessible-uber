@@ -51,10 +51,13 @@
             <td><%= certification.name %></td>
             <td><%= certification.updated_at.strftime("%m/%d/%Y") %></td>
             <td>
-              <% if !certification.approved %>
+              <% if (certification.approved == nil) %>
                 <p>Pending</p>
-              <% else %>
-                <% certification.approved %>
+                
+              <% elsif (certification.approved == true) %>
+                <p>Approved</p>
+              <% elsif (certification.approved == false) %>
+              <p>Rejected</p>
               <% end %>
             </td>
           </tr>
