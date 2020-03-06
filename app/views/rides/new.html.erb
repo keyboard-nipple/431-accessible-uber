@@ -1,0 +1,16 @@
+
+<%= form_with scope: :rides, url: rides_path, local: true do |form| %>
+  <p>
+    <%= form.label :origin %><br>
+    <%= form.text_field :origin %>
+  </p>
+ 
+  <p>
+    <%= form.label :destination %><br>
+    <%= form.text_field :destination %>
+  </p>
+ 
+  <p>
+    <%= form.submit "Confirm Ride", :class => "btn btn-primary" %>
+  </p>
+<% end %>

@@ -56,7 +56,37 @@
           <td>Wheelchair</td>
           <td><%= @rider.wheelchair %></td>
         </tr>
-         <td><%= link_to 'Edit', edit_rider_path(@rider) %></td>
+        <tr>
+          <th scope="row"></th>
+          <% @rider.rides.each do |ride| %>
+            <p>
+              <strong>Origin:</strong>
+              <%= ride.origin %>
+            </p>
+            <p>
+              <strong>Destination:</strong>
+              <%= ride.destination %>
+            </p>
+          <% end %>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>Request a ride</td>
+          <%= form_with(model: [ @rider, @rider.rides.build ], local: true) do |form| %>
+            <p>
+              <%= form.label :origin %><br>
+              <%= form.text_field :origin %>
+            </p>
+            <p>
+              <%= form.label :destination %><br>
+              <%= form.text_area :destination %>
+            </p>
+            <p>
+              <%= form.submit %>
+            </p>
+          <% end %>
+        </tr>
+        <td><%= link_to 'Edit', edit_rider_path(@rider) %></td>
       </tbody>
     </table>
   </div>
