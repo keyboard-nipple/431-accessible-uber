@@ -14,7 +14,7 @@
         <% @drivers.each do |driver| %>
           <% driver.certifications.each do |certification| %>
             <% if certification.approved == nil %>
-                <tr id="certification_<%= certification.id %>>
+                <tr id="certification_<%= certification.id %>">
                   <td><%= driver.name %></td>
                   <td>  
                     <% if certification.image.attached? %>
