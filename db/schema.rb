@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_26_020630) do
+ActiveRecord::Schema.define(version: 2020_03_06_185632) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,22 @@ ActiveRecord::Schema.define(version: 2020_02_26_020630) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.string "name"
+    t.string "uid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "certifications", force: :cascade do |t|
+    t.string "name"
+    t.boolean "approved"
+    t.integer "driver_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["driver_id"], name: "index_certifications_on_driver_id"
   end
 
   create_table "drivers", force: :cascade do |t|
@@ -56,6 +72,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_020630) do
     t.boolean "deaf"
     t.boolean "service_animal"
     t.boolean "wheelchair"
+    t.string "emergency_contact"
   end
 
   create_table "rides", force: :cascade do |t|
@@ -64,9 +81,12 @@ ActiveRecord::Schema.define(version: 2020_02_26_020630) do
     t.integer "rider_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "accepted", default: false
+    t.boolean "completed", default: false
     t.index ["rider_id"], name: "index_rides_on_rider_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "certifications", "drivers"
   add_foreign_key "rides", "riders"
 end

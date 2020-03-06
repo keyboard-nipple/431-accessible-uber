@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       end
     when "driver"
       if (Driver.exists?(uid: session[:current_user_id]))
-        redirect_to Rider.find_by(uid: session[:current_user_id])
+        redirect_to Driver.find_by(uid: session[:current_user_id])
       else
         redirect_to new_driver_path
       end

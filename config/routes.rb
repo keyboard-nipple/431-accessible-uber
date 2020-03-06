@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get 'drivers/index'
   resources :riders do
-    resources :rides
+    resources :rides do 
+      get 'accept', :on => :member
+    end
   end
   resources :drivers
   resources :sessions, only: [:create, :destroy]

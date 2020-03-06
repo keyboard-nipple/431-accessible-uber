@@ -1,16 +1,30 @@
 <h1>Listing Rides</h1>
  
-<table>
-  <tr>
-    <th>Origin</th>
-    <th>Destination</th>
-    <th></th>
-  </tr>
- 
-  <% @rides.each do |ride| %>
-    <tr>
-      <td><%= ride.origin %></td>
-      <td><%= ride.destination %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="col-sm-3">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Origin</th>
+        <th>Destination</th>
+        <th>Accepted?</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @riders.each do |rider| %>
+        <% rider.rides.each do |ride| %>
+          <tr>
+            <td><%= ride.origin %></td>
+            <td><%= ride.destination %></td>
+            <td><%= ride.accepted %></td>
+            <td
+              <%= link_to 'Accept this ride', root_path, :class => "btn btn-primary" %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>    
+    </tbody>
+   
+  
+  </table>
+</div>
