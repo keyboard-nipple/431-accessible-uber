@@ -17,8 +17,8 @@
             <td><%= ride.origin %></td>
             <td><%= ride.destination %></td>
             <td><%= ride.accepted %></td>
-            <td
-              <%= link_to 'Accept this ride', root_path, :class => "btn btn-primary" %>
+            <td>
+              <%= link_to 'Accept this ride', accept_rider_ride_path(rider, ride), :class => "btn btn-primary" %>
             </td>
           </tr>
         <% end %>

@@ -67,6 +67,18 @@
               <strong>Destination:</strong>
               <%= ride.destination %>
             </p>
+            <p>
+              <strong>Accepted:</strong>
+              <%= ride.accepted %>
+            </p>
+            <p>
+              <strong>Time and Date:</strong>
+              <%= ride.timeAndDate %>
+            </p>
+            <p><%= link_to 'Cancel This Ride', [ride.rider, ride],
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+            </p>
           <% end %>
         </tr>
         <tr>
@@ -82,11 +94,16 @@
               <%= form.text_area :destination %>
             </p>
             <p>
+              <%= form.label "Time and Date" %> <br>
+              <%= form.text_field :timeAndDate %> 
+            </p>
+            <p>
               <%= form.submit %>
             </p>
           <% end %>
         </tr>
         <td><%= link_to 'Edit', edit_rider_path(@rider) %></td>
+        
       </tbody>
     </table>
   </div>
