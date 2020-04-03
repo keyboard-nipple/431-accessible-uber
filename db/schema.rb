@@ -84,10 +84,13 @@ ActiveRecord::Schema.define(version: 2020_04_01_022810) do
     t.boolean "accepted", default: false
     t.boolean "completed", default: false
     t.text "timeAndDate"
+    t.integer "driver_id"
+    t.index ["driver_id"], name: "index_rides_on_driver_id"
     t.index ["rider_id"], name: "index_rides_on_rider_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "certifications", "drivers"
+  add_foreign_key "rides", "drivers"
   add_foreign_key "rides", "riders"
 end
