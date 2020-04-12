@@ -35,6 +35,9 @@ class DriversController < ApplicationController
   
   def destroy
     @driver = Driver.find(params[:id])
+    @driver.rides.each do |ride|
+      ride.update(accepted: false)
+    end
     @driver.destroy
     redirect_to "/"
   end

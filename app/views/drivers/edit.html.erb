@@ -54,6 +54,14 @@
     <%= form.text_field :name %>
   </p>
   <p>
+    <%= form.label :disabilities %><br>
+    <%= form.select(:disabilities, options_for_select([
+      [Certification.get_certification_name(1), 1],
+      [Certification.get_certification_name(2), 2],
+      [Certification.get_certification_name(3), 3],
+      [Certification.get_certification_name(4), 4]])) %>
+  </p>
+  <p>
     <%= form.submit %>
   </p>
 <% end %>

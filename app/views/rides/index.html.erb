@@ -1,26 +1,48 @@
 <h1>Listing Rides</h1>
- 
 <div class="col-sm-3">
   <table class="table table-sm">
     <thead>
       <tr>
+        <th>Rider Name</th>
+        <th>Needs</th>
+        <th>Matching</th>
         <th>Origin</th>
         <th>Destination</th>
+        <th>Time and Date</th>
         <th>Accepted?</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
+      <h2>Certifications</h2>
+      <% @driver.certifications.each do |certification| %>
+        <%= Certification.get_certification_name(certification.disabilities) %>
+      <% end %>
       <% @riders.each do |rider| %>
         <% rider.rides.each do |ride| %>
-          <tr>
-            <td><%= ride.origin %></td>
-            <td><%= ride.destination %></td>
-            <td><%= ride.accepted %></td>
-            <td>
-              <%= link_to 'Accept this ride', accept_rider_ride_path(rider, ride), :class => "btn btn-primary" %>
-            </td>
-          </tr>
+          <% if ride.accepted == false && rider.matching_ratio != 0.0 %>
+            <% if rider.matching_ratio == 1.0 %>
+              <tr bgcolor="	#43cd80">
+            <% else %>
+              <tr bgcolor="#ffd700">
+            <% end %>
+                <td><%= rider.name %></td>
+                <td>
+                  <p>Blind Accessibility: <%= rider.blind_accessibility %></p>
+                  <p>Deaf: <%= rider.deaf %></p>
+                  <p>Service Animal: <%= rider.service_animal %></p>
+                  <p>Wheelchair: <%= rider.wheelchair %></p>
+                </td>
+                <td><%= rider.matching_ratio %></td>
+                <td><%= ride.origin %></td>
+                <td><%= ride.destination %></td>
+                <td><%= ride.timeAndDate %></td>
+                <td><%= ride.accepted %></td>
+                <td>
+                  <%= link_to 'Accept this ride', accept_rider_ride_path(rider, ride), :class => "btn btn-primary" %>
+                </td>
+            </tr>
+          <% end %>
         <% end %>
       <% end %>    
     </tbody>

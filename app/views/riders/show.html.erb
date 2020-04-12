@@ -1,6 +1,108 @@
 <div class="container">
   <div class="col-sm text-center">
     <h1 class="display-4">Hello, <%= @rider.name %></h1>
+    
+    <h2>Current Rides</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Origin</th>
+          <th scope="col">Destination</th>
+          <th scope="col">Time and Date</th>
+          <th scope="col">Accepted?</th>
+          <th scope="col">Driver</th>
+          <th scope="col">Rating</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rider.rides.each do |ride| %>
+          <% if !ride.rider_completed || !ride.rider_rated %>
+            <tr>
+              <td><%= ride.origin %></td>
+              <td><%= ride.destination %></td>
+              <td><%= ride.timeAndDate %></td>
+              <td><%= ride.accepted %></td>
+              <td>
+                <% if ride.accepted && !ride.driver.nil? %>
+                  <%= ride.driver.name %>
+                <% else %>
+                  <p>N/A</p>
+                <% end %>
+              </td>
+              <td white-space: nowrap>
+                <% if ride.accepted %>
+                  <% if ride.rider_completed %>
+                    <%= link_to '', rate_as_rider_rider_ride_path(@rider, ride, karma: "positive"), :class => "fa fa-smile-o fa-2x btn btn-outline-success" %>
+                    <%= link_to '', rate_as_rider_rider_ride_path(@rider, ride, karma: "negative"), :class => "fa fa-frown-o fa-2x btn btn-outline-danger" %>
+                  <% else %>
+                    <%= link_to 'Complete', complete_as_rider_rider_ride_path(@rider, ride), :class => "btn btn-primary" %>
+                  <% end %>
+                <% else %>
+                  <p>Ride not accepted</p>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to 'Cancel This Ride', [ride.rider, ride],
+                method: :delete,
+                data: { confirm: 'Are you sure?' },
+                :class => "btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <h2>Completed Rides</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Origin</th>
+          <th scope="col">Destination</th>
+          <th scope="col">Time and Date</th>
+          <th scope="col">Driver</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rider.rides.each do |ride| %>
+          <% if (ride.rider_completed && ride.rider_rated) %>
+            <tr>
+              <td><%= ride.origin %></td>
+              <td><%= ride.destination %></td>
+              <td><%= ride.timeAndDate %></td>
+              <td>
+                <% if ride.accepted && !ride.driver.nil? %>
+                  <%= ride.driver.name %>
+                <% else %>
+                  <p>N/A</p>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <h2>Request a ride</h2>
+    <%= form_with(model: [ @rider, @rider.rides.build ], local: true) do |form| %>
+      <p>
+        <%= form.label :origin %><br>
+        <%= form.text_field :origin %>
+      </p>
+      <p>
+        <%= form.label :destination %><br>
+        <%= form.text_area :destination %>
+      </p>
+      <p>
+        <%= form.label "Time and Date" %> <br>
+        <%= form.text_field :timeAndDate %> 
+      </p>
+      <p>
+        <%= form.submit %>
+      </p>
+    <% end %>
+    
     <div>Here's the information we have on file from you:</div>
     
     <table class="table">
@@ -58,49 +160,8 @@
         </tr>
         <tr>
           <th scope="row"></th>
-          <% @rider.rides.each do |ride| %>
-            <p>
-              <strong>Origin:</strong>
-              <%= ride.origin %>
-            </p>
-            <p>
-              <strong>Destination:</strong>
-              <%= ride.destination %>
-            </p>
-            <p>
-              <strong>Accepted:</strong>
-              <%= ride.accepted %>
-            </p>
-            <p>
-              <strong>Time and Date:</strong>
-              <%= ride.timeAndDate %>
-            </p>
-            <p><%= link_to 'Cancel This Ride', [ride.rider, ride],
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %>
-            </p>
-          <% end %>
-        </tr>
-        <tr>
-          <th scope="row"></th>
-          <td>Request a ride</td>
-          <%= form_with(model: [ @rider, @rider.rides.build ], local: true) do |form| %>
-            <p>
-              <%= form.label :origin %><br>
-              <%= form.text_field :origin %>
-            </p>
-            <p>
-              <%= form.label :destination %><br>
-              <%= form.text_area :destination %>
-            </p>
-            <p>
-              <%= form.label "Time and Date" %> <br>
-              <%= form.text_field :timeAndDate %> 
-            </p>
-            <p>
-              <%= form.submit %>
-            </p>
-          <% end %>
+          <td>Rating</td>
+          <td><%= @rider.karma %></td>
         </tr>
         <td><%= link_to 'Edit', edit_rider_path(@rider) %></td>
         

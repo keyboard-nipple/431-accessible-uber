@@ -6,6 +6,7 @@
           <th scope="col">Driver</th>
           <th scope="col">Image</th>
           <th scope="col">Description</th>
+          <th scope="col">Disabilities</th>
           <th scope="col">Last Updated</th>
           <th scope="col">Approve?</th>
         </tr>
@@ -22,10 +23,13 @@
                     <% end %>
                   </td>
                   <td><%= certification.name %></td>
+                  <td>
+                    <%= Certification.get_certification_name(certification.disabilities) %>
+                  </td>
                   <td><%= certification.updated_at.strftime("%m/%d/%Y") %></td>
                   <td>
-                    <%= link_to "Approve", approve_driver_certification_path(driver, certification), :class => "btn btn-primary", :remote => true %>
-                    <%= link_to "Reject", reject_driver_certification_path(driver, certification), :class => "btn btn-primary", :remote => true %>
+                    <%= link_to "Approve", approve_driver_certification_path(driver, certification), :class => "btn btn-success" %>
+                    <%= link_to "Reject", reject_driver_certification_path(driver, certification), :class => "btn btn-danger" %>
                   </td>
                 </tr>
             <% end %>

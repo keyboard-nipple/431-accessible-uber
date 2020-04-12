@@ -7,12 +7,18 @@ Rails.application.routes.draw do
   resources :riders do
     resources :rides do 
       get 'accept', :on => :member
+      get 'complete_as_rider', :on => :member
+      get 'rate_as_rider', :on => :member
     end
   end
   resources :drivers do
     resources :certifications do 
       get 'approve', :on => :member
       get 'reject', :on => :member
+    end
+    resources :rides do
+      get 'complete_as_driver', :on => :member
+      get 'rate_as_driver', :on => :member
     end
   end
   resources :sessions, only: [:create, :destroy]

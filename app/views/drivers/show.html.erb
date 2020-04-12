@@ -1,30 +1,78 @@
 <div class="container">
   <div class="col-sm text-center">
     <h1 class="display-4">Hello, <%= @driver.name %></h1>
-    <div>Here's the information we have on file from you:</div>
+    
+    <h2>Your current rides:</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Origin</th>
+          <th scope="col">Destination</th>
+          <th scope="col">Time and Date</th>
+          <th scope="col">Rider</th>
+          <th scope="col">Rating</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @driver.rides.each do |ride| %>
+          <% if !ride.driver_completed || !ride.driver_rated %>
+            <tr>
+              <td><%= ride.origin %></td>
+              <td><%= ride.destination %></td>
+              <td><%= ride.timeAndDate %></td>
+              <td><%= ride.rider.name %></td>
+              <td white-space: nowrap>
+                <% if ride.accepted %>
+                  <% if ride.driver_completed %>
+                    <%= link_to '', rate_as_driver_driver_ride_path(@driver, ride, karma: "positive"), :class => "fa fa-smile-o fa-2x btn btn-outline-success" %>
+                    <%= link_to '', rate_as_driver_driver_ride_path(@driver, ride, karma: "negative"), :class => "fa fa-frown-o fa-2x btn btn-outline-danger" %>
+                  <% else %>
+                    <%= link_to 'Complete', complete_as_driver_driver_ride_path(@driver, ride), :class => "btn btn-primary" %>
+                  <% end %>
+                <% else %>
+                  <p>Ride not accepted</p>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to 'Cancel This Ride', [ride.rider, ride],
+                method: :delete,
+                data: { confirm: 'Are you sure?' },
+                :class => "btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
     <%= link_to "Take Up Available Rides", rides_path, :class => "btn btn-primary" %>
-    <% @driver.rides.each do |ride| %>
-      <p>
-        <strong>Origin:</strong>
-        <%= ride.origin %>
-      </p>
-      <p>
-        <strong>Destination:</strong>
-        <%= ride.destination %>
-      </p>
-      <p>
-        <strong>Accepted:</strong>
-        <%= ride.accepted %>
-      </p>
-      <p>
-        <strong>Time and Date:</strong>
-        <%= ride.timeAndDate %>
-      </p>
-      <p><%= link_to 'Cancel This Ride', [ride.rider, ride],
-          method: :delete,
-          data: { confirm: 'Are you sure?' } %>
-      </p>
-    <% end %>
+    
+    <h2>Completed Rides</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Origin</th>
+          <th scope="col">Destination</th>
+          <th scope="col">Time and Date</th>
+          <th scope="col">Rider</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @driver.rides.each do |ride| %>
+          <% if (ride.driver_completed && ride.driver_rated) %>
+            <tr>
+              <td><%= ride.origin %></td>
+              <td><%= ride.destination %></td>
+              <td><%= ride.timeAndDate %></td>
+              <td><%= ride.rider.name %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+    
+    <div>Here's the information we have on file from you:</div>
     <table class="table">
       <thead>
         <tr>
@@ -48,7 +96,11 @@
         <tr>
           <td>Date of Birth</td>
           <td><%= @driver.dob %></td>
-        </tr>   
+        </tr>
+        <tr>
+          <td>Rating</td>
+          <td><%= @driver.karma %></td>
+        </tr>
       </tbody>
     </table>
     
@@ -58,6 +110,7 @@
         <tr>
           <th scope="col">Image</th>
           <th scope="col">Description</th>
+          <th scope="col">Disabilities</th>
           <th scope="col">Last Updated</th>
           <th scope="col">Approval Status</th>
         </tr>
@@ -71,11 +124,11 @@
               <% end %>
             </td>
             <td><%= certification.name %></td>
+            <td><%= Certification.get_certification_name(certification.disabilities) %></td>
             <td><%= certification.updated_at.strftime("%m/%d/%Y") %></td>
             <td>
               <% if (certification.approved == nil) %>
                 <p>Pending</p>
-                
               <% elsif (certification.approved == true) %>
                 <p>Approved</p>
               <% elsif (certification.approved == false) %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_022810) do
+ActiveRecord::Schema.define(version: 2020_04_11_004835) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_022810) do
     t.integer "driver_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "disabilities"
     t.index ["driver_id"], name: "index_certifications_on_driver_id"
   end
 
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_022810) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "blind_accessibility"
+    t.integer "karma", default: 0
   end
 
   create_table "riders", force: :cascade do |t|
@@ -73,6 +75,8 @@ ActiveRecord::Schema.define(version: 2020_04_01_022810) do
     t.boolean "service_animal"
     t.boolean "wheelchair"
     t.string "emergency_contact"
+    t.integer "karma", default: 0
+    t.float "matching_ratio"
   end
 
   create_table "rides", force: :cascade do |t|
@@ -85,6 +89,10 @@ ActiveRecord::Schema.define(version: 2020_04_01_022810) do
     t.boolean "completed", default: false
     t.text "timeAndDate"
     t.integer "driver_id"
+    t.boolean "driver_completed"
+    t.boolean "rider_completed"
+    t.boolean "driver_rated", default: false
+    t.boolean "rider_rated", default: false
     t.index ["driver_id"], name: "index_rides_on_driver_id"
     t.index ["rider_id"], name: "index_rides_on_rider_id"
   end
