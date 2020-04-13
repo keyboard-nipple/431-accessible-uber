@@ -20,7 +20,7 @@
             <tr>
               <td><%= ride.origin %></td>
               <td><%= ride.destination %></td>
-              <td><%= ride.timeAndDate %></td>
+              <td><%= ride.formatted_date %></td>
               <td><%= ride.rider.name %></td>
               <td white-space: nowrap>
                 <% if ride.accepted %>
@@ -63,7 +63,7 @@
             <tr>
               <td><%= ride.origin %></td>
               <td><%= ride.destination %></td>
-              <td><%= ride.timeAndDate %></td>
+              <td><%= ride.formatted_date %></td>
               <td><%= ride.rider.name %></td>
             </tr>
           <% end %>

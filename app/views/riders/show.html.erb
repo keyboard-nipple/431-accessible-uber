@@ -21,7 +21,7 @@
             <tr>
               <td><%= ride.origin %></td>
               <td><%= ride.destination %></td>
-              <td><%= ride.timeAndDate %></td>
+              <td><%= ride.formatted_date %></td>
               <td><%= ride.accepted %></td>
               <td>
                 <% if ride.accepted && !ride.driver.nil? %>
@@ -70,7 +70,7 @@
             <tr>
               <td><%= ride.origin %></td>
               <td><%= ride.destination %></td>
-              <td><%= ride.timeAndDate %></td>
+              <td><%= ride.formatted_date %></td>
               <td>
                 <% if ride.accepted && !ride.driver.nil? %>
                   <%= ride.driver.name %>
@@ -96,7 +96,7 @@
       </p>
       <p>
         <%= form.label "Time and Date" %> <br>
-        <%= form.text_field :timeAndDate %> 
+        <%= form.datetime_select :timeAndDate, default: DateTime.current %> 
       </p>
       <p>
         <%= form.submit %>
