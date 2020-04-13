@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_013957) do
+ActiveRecord::Schema.define(version: 2020_04_13_065016) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -87,12 +87,12 @@ ActiveRecord::Schema.define(version: 2020_04_13_013957) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "accepted", default: false
     t.boolean "completed", default: false
-    t.datetime "timeAndDate"
     t.integer "driver_id"
     t.boolean "driver_completed"
     t.boolean "rider_completed"
     t.boolean "driver_rated", default: false
     t.boolean "rider_rated", default: false
+    t.datetime "timeAndDate"
     t.index ["driver_id"], name: "index_rides_on_driver_id"
     t.index ["rider_id"], name: "index_rides_on_rider_id"
   end
