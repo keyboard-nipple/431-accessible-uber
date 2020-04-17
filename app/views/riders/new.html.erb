@@ -8,10 +8,15 @@
       <%= form.hidden_field :name, :value => session["user_name"] %>
       <%= form.hidden_field :email, :value => session["user_email"] %>
     
-      <p>
-        <%= form.label "Zip Code" %><br>
-        <%= form.text_field :zip_code %>
-      </p>
+     <p>
+    <%= form.label :city %><br>
+    <%= form.select(:city, [
+      ["College Station", "College Station"],
+      ["Dallas", "Dallas"],
+      ["Houston", "Houston"],
+      ["Bryan", "Bryan"],
+      ["Oklahoma City", "Oklahoma City"]]) %>
+  </p>
     
       <p>
         <%= form.label "Date of Birth" %><br>

@@ -2,6 +2,9 @@ class RidesController < ApplicationController
   def create
     @rider = Rider.find(params[:rider_id])
     @ride = @rider.rides.create(ride_params)
+    if @ride.errors.any?
+      flash[:rides_error] = @ride.errors.full_messages
+    end
     redirect_to rider_path(@rider)
   end
   

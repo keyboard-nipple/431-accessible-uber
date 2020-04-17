@@ -1,4 +1,16 @@
-<div class="container">
+<%= stylesheet_link_tag "application", media: "all" %>
+<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { 
+    font-family: 'Oxygen'
+  }
+  h1 {
+    padding: 0;
+    margin: 0;
+  }
+</style>
+
+<div class="container-flex">
   <div class="col-sm text-center">
     <h1 class="display-4">Hello, <%= @driver.name %></h1>
     
@@ -45,7 +57,6 @@
         <% end %>
       </tbody>
     </table>
-    <%= link_to "Take Up Available Rides", rides_path, :class => "btn btn-primary" %>
     
     <h2>Completed Rides</h2>
     <table class="table">
@@ -70,7 +81,8 @@
         <% end %>
       </tbody>
     </table>
-
+    
+    <%= link_to "Take Up Available Rides", rides_path, :class => "btn btn-primary" %>
     
     <div>Here's the information we have on file from you:</div>
     <table class="table">
@@ -98,8 +110,12 @@
           <td><%= @driver.dob %></td>
         </tr>
         <tr>
+          <td>City</td>
+          <td><%= @driver.city %></td>
+        </tr>
+        <tr>
           <td>Rating</td>
-          <td><%= @driver.karma %></td>
+          <td><%= @driver.karma %>/<%= @driver.num_rides_rated_by_rider %></td>
         </tr>
       </tbody>
     </table>

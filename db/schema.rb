@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_065016) do
+ActiveRecord::Schema.define(version: 2020_04_16_013038) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_065016) do
 
   create_table "certifications", force: :cascade do |t|
     t.string "name"
-    t.boolean "approved"
+    t.boolean "approved", default: false
     t.integer "driver_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -58,8 +58,9 @@ ActiveRecord::Schema.define(version: 2020_04_13_065016) do
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "blind_accessibility"
     t.integer "karma", default: 0
+    t.string "zip_code"
+    t.string "city"
   end
 
   create_table "riders", force: :cascade do |t|
@@ -70,13 +71,14 @@ ActiveRecord::Schema.define(version: 2020_04_13_065016) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "zip_code"
     t.string "uid"
-    t.boolean "blind_accessibility"
-    t.boolean "deaf"
-    t.boolean "service_animal"
-    t.boolean "wheelchair"
+    t.boolean "blind_accessibility", default: false
+    t.boolean "deaf", default: false
+    t.boolean "service_animal", default: false
+    t.boolean "wheelchair", default: false
     t.string "emergency_contact"
     t.integer "karma", default: 0
     t.float "matching_ratio"
+    t.string "city"
   end
 
   create_table "rides", force: :cascade do |t|
@@ -88,8 +90,8 @@ ActiveRecord::Schema.define(version: 2020_04_13_065016) do
     t.boolean "accepted", default: false
     t.boolean "completed", default: false
     t.integer "driver_id"
-    t.boolean "driver_completed"
-    t.boolean "rider_completed"
+    t.boolean "driver_completed", default: false
+    t.boolean "rider_completed", default: false
     t.boolean "driver_rated", default: false
     t.boolean "rider_rated", default: false
     t.datetime "timeAndDate"

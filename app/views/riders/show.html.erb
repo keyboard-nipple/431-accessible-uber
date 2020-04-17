@@ -1,4 +1,18 @@
-<div class="container">
+
+<%= stylesheet_link_tag "rider.css" %>
+<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { 
+    font-family: 'Oxygen'
+  }
+  h1 {
+    padding: 0;
+    margin: 0;
+  }
+  
+</style>
+
+<div class="container-flex">
   <div class="col-sm text-center">
     <h1 class="display-4">Hello, <%= @rider.name %></h1>
     
@@ -86,31 +100,44 @@
     
     <h2>Request a ride</h2>
     <%= form_with(model: [ @rider, @rider.rides.build ], local: true) do |form| %>
+      <% if flash[:rides_error] %>
+        <ul>
+          <% flash[:rides_error].each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
       <p>
         <%= form.label :origin %><br>
         <%= form.text_field :origin %>
       </p>
       <p>
         <%= form.label :destination %><br>
-        <%= form.text_area :destination %>
+        <%= form.text_field :destination %>
       </p>
       <p>
         <%= form.label "Time and Date" %> <br>
-        <%= form.datetime_select :timeAndDate, default: DateTime.current %> 
+        <%= form.datetime_select :timeAndDate, start: DateTime.current %> 
       </p>
       <p>
-        <%= form.submit %>
+        <%= form.submit 'Create Ride', :class => 'btn btn-primary' %>
       </p>
+    <% end %>
+    
+    <% if @rider.errors.any? %>
+      <div>errors</div>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
     <% end %>
     
     <div>Here's the information we have on file from you:</div>
     
     <table class="table">
       <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
+
       </thead>
       <tbody>
         <tr>
@@ -125,8 +152,8 @@
         </tr>
         <tr>
           <th scope="row"></th>
-          <td>Zip Code</td>
-          <td><%= @rider.zip_code %></td>
+          <td>City</td>
+          <td><%= @rider.city %></td>
         </tr>
         <tr>
           <th scope="row"></th>
@@ -161,11 +188,10 @@
         <tr>
           <th scope="row"></th>
           <td>Rating</td>
-          <td><%= @rider.karma %></td>
+          <td><%= @rider.karma %>/<%= @rider.num_rides_rated_by_driver %></td>
         </tr>
-        <td><%= link_to 'Edit', edit_rider_path(@rider) %></td>
-        
       </tbody>
     </table>
+    <%= link_to 'Update Profile', edit_rider_path(@rider), :class => "btn btn-primary" %>
   </div>
 </div>

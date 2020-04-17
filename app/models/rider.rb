@@ -65,6 +65,46 @@ class Rider < ApplicationRecord
     return n
   end
   
+  def check_eligibility(ride, driver)
+    if ride.accepted == true
+      return false
+    end
+    
+    if self.city != driver.city
+      return false
+    end
+    
+    wheelchair_cert = false
+    service_animal_cert = false
+    driver.certifications.each do |certification|
+      if certification.disabilities == 3 && certification.approved
+        service_animal_cert = true
+      elsif certification.disabilities == 4 && certification.approved
+        wheelchair_cert = true
+      end
+    end
+    
+    if self.service_animal && (service_animal_cert == false)
+      return false
+    end
+    
+    if self.wheelchair && (wheelchair_cert == false)
+      return false
+    end
+    
+    return true
+  
+  end
+
+  def num_rides_rated_by_driver
+    num_rides = 0
+    self.rides.each do |ride|
+      if ride.driver_rated
+        num_rides += 1
+      end
+    end
+    return num_rides
+  end
   
   
 end

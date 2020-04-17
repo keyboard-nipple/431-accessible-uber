@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+ 
+ h1 {
+  color: white;
+  background-color: SteelBlue;
+}
+ h2 {
+  color: white;
+  background-color: SteelBlue;
+}
+.link-color{
+  color: "red";
+}
+
+.btn-primary {
+  .buttonBackground(Green, Orange); //(button, hover)
+}

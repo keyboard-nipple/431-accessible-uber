@@ -1,10 +1,21 @@
-<h1>Listing Rides</h1>
-<div class="col-sm-3">
+<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { 
+    font-family: 'Oxygen'
+  }
+</style>
+
+<div class="flex-container">
+  <h1 align='center'>List of Rides</h1>
   <table class="table table-sm">
     <thead>
+      <script src="https://kit.fontawesome.com/7c984c7b85.js" crossorigin="anonymous"></script>
       <tr>
         <th>Rider Name</th>
-        <th>Needs</th>
+        <th>Blind Accessibility</th>
+        <th>Deaf</th>
+        <th>Service Animal</th>
+        <th>Wheelchair</th>
         <th>Matching</th>
         <th>Origin</th>
         <th>Destination</th>
@@ -14,24 +25,61 @@
       </tr>
     </thead>
     <tbody>
-      <h2>Certifications</h2>
-      <% @driver.certifications.each do |certification| %>
-        <%= Certification.get_certification_name(certification.disabilities) %>
-      <% end %>
+      <h2>Certifications That You Have:</h2>
+      <%= @driver.get_certification_list() %>
+      
       <% @riders.each do |rider| %>
         <% rider.rides.each do |ride| %>
-          <% if ride.accepted == false && rider.matching_ratio != 0.0 %>
+          <% if rider.check_eligibility(ride, @driver) %>
             <% if rider.matching_ratio == 1.0 %>
               <tr bgcolor="	#43cd80">
             <% else %>
               <tr bgcolor="#ffd700">
             <% end %>
                 <td><%= rider.name %></td>
-                <td>
-                  <p>Blind Accessibility: <%= rider.blind_accessibility %></p>
-                  <p>Deaf: <%= rider.deaf %></p>
-                  <p>Service Animal: <%= rider.service_animal %></p>
-                  <p>Wheelchair: <%= rider.wheelchair %></p>
+                <td white-space: nowrap>
+                  <% if @driver.check_cert('blind_accessibility') %>
+                    <span style="font-size: 3em; color: Blue;">
+                      <i class="fas fa-check"></i>
+                    </span>
+                  <% else %>
+                    <span style="font-size: 3em; color: Red;">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  <% end %>
+                </td>
+                <td white-space: nowrap>
+                  <% if @driver.check_cert('deaf') %>
+                    <span style="font-size: 3em; color: Blue;">
+                      <i class="fas fa-check"></i>
+                    </span>
+                  <% else %>
+                    <span style="font-size: 3em; color: Red;">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  <% end %>
+                </td>
+                <td white-space: nowrap>
+                  <% if @driver.check_cert('service_animal') %>
+                    <span style="font-size: 3em; color: Blue;">
+                      <i class="fas fa-check"></i>
+                    </span>
+                  <% else %>
+                    <span style="font-size: 3em; color: Red;">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  <% end %>
+                </td>
+                <td white-space: nowrap>
+                  <% if @driver.check_cert('wheelchair') %>
+                    <span style="font-size: 3em; color: Blue;">
+                      <i class="fas fa-check"></i>
+                    </span>
+                  <% else %>
+                    <span style="font-size: 3em; color: Red;">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  <% end %>
                 </td>
                 <td><%= rider.matching_ratio %></td>
                 <td><%= ride.origin %></td>

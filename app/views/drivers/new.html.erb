@@ -7,7 +7,7 @@
       <%= form.hidden_field :uid, :value => session["current_user_id"] %>
       <%= form.hidden_field :name, :value => session["user_name"] %>
       <%= form.hidden_field :email, :value => session["user_email"] %>
-    
+      
       <p>
         <%= form.label "Driver's License No." %><br>
         <%= form.text_field :license %>
@@ -17,6 +17,18 @@
         <%= form.label "Date of Birth" %><br>
         <%= form.text_field :dob %>
       </p>
+      
+      
+     <p>
+    <%= form.label :city %><br>
+    <%= form.select(:city, [
+      ["College Station", "College Station"],
+      ["Dallas", "Dallas"],
+      ["Houston", "Houston"],
+      ["Bryan", "Bryan"],
+      ["Oklahoma City", "Oklahoma City"]]) %>
+  </p>
+      
       
       <p>
         <%= form.submit "Create Account", :class => "btn btn-primary" %>
