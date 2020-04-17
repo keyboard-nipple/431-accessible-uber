@@ -25,7 +25,3 @@
 .link-color{
   color: "red";
 }
-
-.btn-primary {
-  .buttonBackground(Green, Orange); //(button, hover)
-}
