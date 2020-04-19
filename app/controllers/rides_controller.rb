@@ -84,7 +84,9 @@ class RidesController < ApplicationController
   
   def order_rides
     @riders.each do |rider|
-       rider.update(matching_ratio: matching_ratio(rider.num_matching_certifications(@driver.certifications).to_f, rider.num_needs.to_f))
+      puts "num matching: " + rider.num_matching_certifications(@driver.certifications).to_s
+      puts "num needs: " + rider.num_needs.to_s
+      rider.update(matching_ratio: matching_ratio(rider.num_matching_certifications(@driver.certifications).to_f, rider.num_needs.to_f))
     end
     @riders = @riders.order(matching_ratio: :desc)
   end

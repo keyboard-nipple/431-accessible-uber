@@ -18,7 +18,7 @@ class Driver < ApplicationRecord
       end
       
       self.certifications.each do |certification|
-          if certification.disabilities == val
+          if certification.disabilities == val && certification.approved
               return true
           end
       end
@@ -37,8 +37,9 @@ class Driver < ApplicationRecord
   end
   
   def get_certification_list()
-    listDis = ""
-    self.certifications.each do |certification|
+  listDis = ""
+  self.certifications.each do |certification|
+    if certification.approved
       if listDis.length > 0
         listDis = listDis + ", "
       end
@@ -53,6 +54,7 @@ class Driver < ApplicationRecord
         listDis = listDis + "Wheelchair"
       end
     end
-    return listDis
+  end
+  return listDis
   end
 end

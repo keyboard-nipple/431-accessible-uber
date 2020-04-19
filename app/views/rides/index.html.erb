@@ -5,7 +5,9 @@
   }
 </style>
 
-<div class="flex-container">
+<% content_for :title, "Take Up Available Rides" %>
+
+<div class="container">
   <h1 align='center'>List of Rides</h1>
   <table class="table table-sm">
     <thead>
@@ -16,11 +18,9 @@
         <th>Deaf</th>
         <th>Service Animal</th>
         <th>Wheelchair</th>
-        <th>Matching</th>
         <th>Origin</th>
         <th>Destination</th>
         <th>Time and Date</th>
-        <th>Accepted?</th>
         <th></th>
       </tr>
     </thead>
@@ -38,54 +38,60 @@
             <% end %>
                 <td><%= rider.name %></td>
                 <td white-space: nowrap>
-                  <% if @driver.check_cert('blind_accessibility') %>
+                  <% if @driver.check_cert('blind_accessibility') && rider.blind_accessibility %>
                     <span style="font-size: 3em; color: Blue;">
                       <i class="fas fa-check"></i>
                     </span>
-                  <% else %>
+                  <% elsif rider.blind_accessibility %>
                     <span style="font-size: 3em; color: Red;">
                       <i class="fas fa-times"></i>
                     </span>
+                  <% else %>
+                    <span>N/A</span>
                   <% end %>
                 </td>
                 <td white-space: nowrap>
-                  <% if @driver.check_cert('deaf') %>
+                  <% if @driver.check_cert('deaf') && rider.deaf %>
                     <span style="font-size: 3em; color: Blue;">
                       <i class="fas fa-check"></i>
                     </span>
-                  <% else %>
+                  <% elsif rider.deaf %>
                     <span style="font-size: 3em; color: Red;">
                       <i class="fas fa-times"></i>
                     </span>
+                  <% else %>
+                    <span>N/A</span>
                   <% end %>
                 </td>
                 <td white-space: nowrap>
-                  <% if @driver.check_cert('service_animal') %>
+                  <% if @driver.check_cert('service_animal') && rider.service_animal %>
                     <span style="font-size: 3em; color: Blue;">
                       <i class="fas fa-check"></i>
                     </span>
-                  <% else %>
+                  <% elsif rider.service_animal %>
                     <span style="font-size: 3em; color: Red;">
                       <i class="fas fa-times"></i>
                     </span>
+                  <% else %>
+                    <span>N/A</span>
                   <% end %>
                 </td>
                 <td white-space: nowrap>
-                  <% if @driver.check_cert('wheelchair') %>
+                  <% if @driver.check_cert('wheelchair') && rider.wheelchair %>
                     <span style="font-size: 3em; color: Blue;">
                       <i class="fas fa-check"></i>
                     </span>
-                  <% else %>
+                  <% elsif rider.wheelchair %>
                     <span style="font-size: 3em; color: Red;">
                       <i class="fas fa-times"></i>
                     </span>
+                  <% else %>
+                    <span>N/A</span>
                   <% end %>
                 </td>
-                <td><%= rider.matching_ratio %></td>
                 <td><%= ride.origin %></td>
                 <td><%= ride.destination %></td>
-                <td><%= ride.timeAndDate %></td>
-                <td><%= ride.accepted %></td>
+                <td><%= ride.formatted_date %></td>
                 <td>
                   <%= link_to 'Accept this ride', accept_rider_ride_path(rider, ride), :class => "btn btn-primary" %>
                 </td>

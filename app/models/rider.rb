@@ -28,7 +28,7 @@ class Rider < ApplicationRecord
      
     if self.blind_accessibility
       certifications.each do |certification|
-        if certification.disabilities == 1
+        if certification.disabilities == 1 && certification.approved
           n += 1
           break
         end
@@ -37,7 +37,7 @@ class Rider < ApplicationRecord
      
     if self.deaf
       certifications.each do |certification|
-        if certification.disabilities == 2
+        if certification.disabilities == 2 && certification.approved
           n += 1
           break
         end
@@ -46,7 +46,7 @@ class Rider < ApplicationRecord
      
     if self.service_animal
       certifications.each do |certification|
-        if certification.disabilities == 3
+        if certification.disabilities == 3 && certification.approved
           n += 1
           break
         end
@@ -55,7 +55,7 @@ class Rider < ApplicationRecord
      
     if self.wheelchair
       certifications.each do |certification|
-        if certification.disabilities == 4
+        if certification.disabilities == 4 && certification.approved
           n += 1
           break
         end

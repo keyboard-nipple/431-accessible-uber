@@ -14,7 +14,7 @@ class Ride < ApplicationRecord
   
   def timeAndDate_cannot_be_in_the_past
     if (self.timeAndDate.present? && self.timeAndDate < Date.today)
-      errors.add(:timeAndDate, "cannot be in the past")
+      errors.add("Time and Date", "cannot be in the past")
     end
   end
 end
