@@ -1,6 +1,7 @@
 class Rider < ApplicationRecord
   has_many :rides, dependent: :destroy
   
+  
   def num_needs()
     n = 0
     
@@ -106,5 +107,6 @@ class Rider < ApplicationRecord
     return num_rides
   end
   
+
   
 end

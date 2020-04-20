@@ -16,7 +16,7 @@
     
       <p>
         <%= form.label "Date of Birth" %><br>
-        <%= form.text_field :dob %>
+        <%= form.date_select :dob, start_year: Date.today.year - 18, end_year: Date.today.year - 100%> 
       </p>
       
       

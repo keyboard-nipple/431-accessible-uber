@@ -7,91 +7,105 @@
   h1 {
     padding: 0;
     margin: 0;
+    background-color: SteelBlue;
+  }
+  h2 {
+    padding: 0;
+    margin: 0;
+    background-color: SteelBlue;
   }
 </style>
-<% content_for :title, "Edit Driver Profile" %>
+<% content_for :title, " Edit Driver Profile" %>
 <h1>Edit Driver</h1>
 
-
-<%= form_with(model: @driver, local: true) do |form| %>
- 
-    <% if @driver.errors.any? %>
-    <div id="error_explanation">
-        <h2>
-        <%= pluralize(@driver.errors.count, "error") %> prohibited
-        this driver from being saved:
-      </h2>
-      <ul>
-        <% @driver.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
- 
-  <p>
-    
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
- 
-  <p>
-    
-    <%= form.label :email %><br>
-    <%= form.text_field :email %>
-  </p>
-  
-  <p>
-    <%= form.label :dob %> <br>
-    <%= form.text_field :dob %>
-  </p>
-  
-  <p>
-    <%= form.label :license %> <br>
-    <%= form.text_field :license %>
-  </p>
-  
-  <p>
-    <%= form.label :city %><br>
-    <%= form.select(:city, [
-      ["College Station", "College Station"],
-      ["Dallas", "Dallas"],
-      ["Houston", "Houston"],
-      ["Bryan", "Bryan"],
-      ["Oklahoma City", "Oklahoma City"]]) %>
-  </p>
-    
-  <p>
-    <%= form.submit %>
-  </p>
- 
-<% end %>
+<div class="container-flex">
+  <div class="col-sm">
+    <%= form_with(model: @driver, local: true) do |form| %>
+     
+        <% if @driver.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+            <%= pluralize(@driver.errors.count, "error") %> prohibited
+            this driver from being saved:
+          </h2>
+          <ul>
+            <% @driver.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+     
+      <p>
+        
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+      </p>
+     
+      <p>
+        
+        <%= form.label :email %><br>
+        <%= form.text_field :email %>
+      </p>
+      
+      <p>
+        <%= form.label "Date of Birth" %> <br>
+        <%= form.text_field :dob %>
+      </p>
+      
+      <p>
+        <%= form.label "Driver's License Number" %> <br>
+        <%= form.text_field :license %>
+      </p>
+      
+      <p>
+        <%= form.label :city %><br>
+        <%= form.select(:city, [
+          ["College Station", "College Station"],
+          ["Dallas", "Dallas"],
+          ["Houston", "Houston"],
+          ["Bryan", "Bryan"],
+          ["Oklahoma City", "Oklahoma City"]]) %>
+      </p>
+        
+      <p>
+        <%= form.submit "Save Changes", :class => 'btn btn-primary' %>
+      </p>
+     
+    <% end %>
+  </div>
+</div>
 
 <h2>Upload Certifications:</h2>
-<%= form_with(model: [ @driver, @driver.certifications.build ], local: true) do |form| %>
-  <p>
-   <%= form.label :image %> <br>
-   <%= form.file_field :image %> <br>
-  </p>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
-  <p>
-    <%= form.label :disabilities %><br>
-    <%= form.select(:disabilities, options_for_select([
-      [Certification.get_certification_name(1), 1],
-      [Certification.get_certification_name(2), 2],
-      [Certification.get_certification_name(3), 3],
-      [Certification.get_certification_name(4), 4]])) %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
- 
-<%= link_to 'Edit', edit_driver_path(@driver) %> |
-<%= link_to 'Back', driver_path %> |
-<p><%= link_to 'Destroy', driver_path(@driver),
-        method: :delete,
-        data: { confirm: 'Are you sure?' } %></p>
+<div class="container-flex">
+  <div class="col-sm">
+    <%= form_with(model: [ @driver, @driver.certifications.build ], local: true) do |form| %>
+      <p>
+       <%= form.label :image %> <br>
+       <%= form.file_field :image %> <br>
+      </p>
+      <p>
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+      </p>
+      <p>
+        <%= form.label :disabilities %><br>
+        <%= form.select(:disabilities, options_for_select([
+          [Certification.get_certification_name(1), 1],
+          [Certification.get_certification_name(2), 2],
+          [Certification.get_certification_name(3), 3],
+          [Certification.get_certification_name(4), 4]])) %>
+      </p>
+      <p>
+        <%= form.submit "Create Certification", :class => 'btn btn-primary' %>
+      </p>
+    <% end %>
+     
+    <%= link_to 'Edit', edit_driver_path(@driver) %> |
+    <%= link_to 'Back', driver_path %> |
+    <p><%= link_to 'Delete my account', driver_path(@driver),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></p>
+      
+  </div>  
+</div>

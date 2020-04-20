@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_17_031107) do
+ActiveRecord::Schema.define(version: 2020_04_19_014901) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 2020_04_17_031107) do
   create_table "drivers", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "dob"
     t.string "license"
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
@@ -61,12 +60,12 @@ ActiveRecord::Schema.define(version: 2020_04_17_031107) do
     t.integer "karma", default: 0
     t.string "zip_code"
     t.string "city"
+    t.date "dob"
   end
 
   create_table "riders", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "dob"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "zip_code"
@@ -79,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_04_17_031107) do
     t.integer "karma", default: 0
     t.float "matching_ratio"
     t.string "city"
+    t.date "dob"
   end
 
   create_table "rides", force: :cascade do |t|

@@ -7,13 +7,20 @@
   h1 {
     padding: 0;
     margin: 0;
+    color: white;
+    background-color: SteelBlue;
+  }
+ h2 {
+  color: white;
+  background-color: SteelBlue;
+  /* font-size: 4vw; */
   }
 </style>
 
 <% content_for :title, "Driver Profile" %>
 <div class="container">
   <div class="col-sm text-center">
-    <h1 class="display-4">Hello, <%= @driver.name %></h1>
+    <h1>Hello, <%= @driver.name %></h1>
     
     <h2>Your current rides:</h2>
     <table class="table">
@@ -86,13 +93,7 @@
     <%= link_to "Take Up Available Rides", rides_path, :class => "btn btn-primary" %>
     
     <div>Here's the information we have on file from you:</div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
+    <table class="table table-bordered">
       <tbody>
         <tr>
           <td>Name</td>

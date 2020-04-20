@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "application", media: "all" %>
+<%= stylesheet_link_tag "rider.css" %>
 <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap" rel="stylesheet">
 <style>
   * { 
@@ -11,69 +11,79 @@
 </style>
 
 <% content_for :title, "Edit Rider Profile" %>
-
 <h1>Edit Rider</h1>
+<div class="container-flex">
+  <div class="col-sm">
 
-
-<%= form_with(model: @rider, local: true) do |form| %>
- 
-    <% if @rider.errors.any? %>
-    <div id="error_explanation">
-        <h2>
-        <%= pluralize(@rider.errors.count, "error") %> prohibited
-        this rider from being saved:
-      </h2>
-      <ul>
-        <% @rider.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
- 
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
-  
-  
- 
-  <p>
-    <%= form.label :email %><br>
-    <%= form.text_field :email %>
-  </p>
-  <p>
-    <%= form.label :"emergency contact" %> <br>
-    <%= form.text_field :emergency_contact %>
-  </p>
-  
-<p>
-    <%= form.label :city %><br>
-    <%= form.select(:city, [
-      ["College Station", "College Station"],
-      ["Dallas", "Dallas"],
-      ["Houston", "Houston"],
-      ["Bryan", "Bryan"],
-      ["Oklahoma City", "Oklahoma City"]]) %>
-  </p>
-  <p>
-  <%= form.label "Blind Accessibility" %> 
-    <%= form.check_box :blind_accessibility %> 
-  <%= form.label "Wheelchair" %> 
-    <%= form.check_box :wheelchair %> 
-    <%= form.label "Service Animal" %> 
-    <%= form.check_box :service_animal %> 
-    <%= form.label "deaf" %> 
-    <%= form.check_box :deaf %> 
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
- 
-<% end %>
- 
-<%= link_to 'Edit', edit_rider_path(@rider) %> |
-<%= link_to 'Back', rider_path %> |
-<p><%= link_to 'Destroy', rider_path(@rider),
-        method: :delete,
-        data: { confirm: 'Are you sure?' } %></p>
+    <%= form_with(model: @rider, local: true) do |form| %>
+     
+        <% if @rider.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+            <%= pluralize(@rider.errors.count, "error") %> prohibited
+            this rider from being saved:
+          </h2>
+          <ul>
+            <% @rider.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+     
+      <p>
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+      </p>
+      
+      <p>
+        <%= form.label :email %><br>
+        <%= form.text_field :email %>
+      </p>
+      <p>
+        <%= form.label :"emergency contact" %> <br>
+        <%= form.text_field :emergency_contact %>
+      </p>
+      
+    <p>
+        <%= form.label :city %><br>
+        <%= form.select(:city, [
+          ["College Station", "College Station"],
+          ["Dallas", "Dallas"],
+          ["Houston", "Houston"],
+          ["Bryan", "Bryan"],
+          ["Oklahoma City", "Oklahoma City"]]) %>
+      </p>
+      <p>
+        <div>
+          <%= form.check_box :blind_accessibility %>
+          <%= form.label "Blind Accessibility" %> 
+        </div>
+        <div>
+          <%= form.check_box :wheelchair %>
+          <%= form.label "Wheelchair" %>
+        </div>
+        <div>
+          <%= form.check_box :service_animal %>    
+          <%= form.label "Service Animal" %> 
+        </div>
+        <div>
+          <%= form.check_box :deaf %> 
+          <%= form.label "Deaf" %> 
+        </div>
+    
+      </p>
+      <p>
+        <%= form.submit "Save Changes", :class => 'btn btn-primary' %>
+      </p>
+     
+    <% end %>
+     
+    <%= link_to 'Edit', edit_rider_path(@rider) %> |
+    <%= link_to 'Back', rider_path %> |
+    <p><%= link_to 'Delete my account', rider_path(@rider),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+            </p>
+  </div>
+</div>

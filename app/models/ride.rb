@@ -2,6 +2,8 @@ class Ride < ApplicationRecord
   belongs_to :rider
   belongs_to :driver, optional: true
   
+  validates :origin, presence:true
+  validates :destination, presence:true
   validate :timeAndDate_cannot_be_in_the_past, on: :create
   
   def formatted_date()

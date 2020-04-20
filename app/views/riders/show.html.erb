@@ -1,5 +1,5 @@
-
 <%= stylesheet_link_tag "rider.css" %>
+<%= stylesheet_link_tag "application", media: "all" %>
 <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap" rel="stylesheet">
 <style>
   * { 
@@ -8,6 +8,13 @@
   h1 {
     padding: 0;
     margin: 0;
+    color: white;
+    background-color: FireBrick;
+  }
+ h2 {
+  color: white;
+  background-color: FireBrick;
+  /* font-size: 4vw; */
   }
   
 </style>
@@ -18,7 +25,7 @@
     <h1 class="display-4">Hello, <%= @rider.name %></h1>
     
     <h2>Current Rides</h2>
-    <table class="table">
+    <table class= "table">
       <thead>
         <tr>
           <th scope="col">Origin</th>
@@ -54,7 +61,7 @@
                     <%= link_to 'Complete', complete_as_rider_rider_ride_path(@rider, ride), :class => "btn btn-primary" %>
                   <% end %>
                 <% else %>
-                  <p>Ride not accepted</p>
+                  <p>N/A</p>
                 <% end %>
               </td>
               <td>
@@ -136,59 +143,46 @@
     
     <div>Here's the information we have on file from you:</div>
     
-    <table class="table">
-      <thead>
-
-      </thead>
+    <table class="table table-bordered">
       <tbody>
         <tr>
-          <th scope="row"></th>
-          <td>Name</td>
+          <th scope="row">Name</th>
           <td><%= @rider.name %></td>
         </tr>
         <tr>
-          <th scope="row"></th>
-          <td>E-mail Address</td>
+          <th scope="row">E-mail Address</th>
           <td><%= @rider.email %></td>
         </tr>
         <tr>
-          <th scope="row"></th>
-          <td>City</td>
+          <th scope="row">City</th>
           <td><%= @rider.city %></td>
         </tr>
         <tr>
-          <th scope="row"></th>
-          <td>Date of Birth</td>
+          <th scope="row">Date of Birth</th>
           <td><%= @rider.dob %></td>
         </tr>
         <tr>
-          <th scope="row"></th>
-          <td>Emergency Contact</td>
+          <th scope="row">Emergency Contact</th>
           <td><%= @rider.emergency_contact %></td>
         </tr>
         <tr>
-          <th scope="row"></th>
-          <td>Blind Accessibility</td>
+          <th scope="row">Blind Accessibility</th>
           <td><%= @rider.blind_accessibility %></td>
         </tr>
         <tr>
-          <th scope="row"></th>
-          <td>Deaf</td>
+          <th scope="row">Deaf</th>
           <td><%= @rider.deaf %></td>
         </tr>
         <tr>
-          <th scope="row"></th>
-          <td>Service Animal</td>
+          <th scope="row">Service Animal</th>
           <td><%= @rider.service_animal %></td>
         </tr>
         <tr>
-          <th scope="row"></th>
-          <td>Wheelchair</td>
+          <th scope="row">Wheelchair</th>
           <td><%= @rider.wheelchair %></td>
         </tr>
         <tr>
-          <th scope="row"></th>
-          <td>Rating</td>
+          <th scope="row">Rating</th>
           <td><%= @rider.karma %>/<%= @rider.num_rides_rated_by_driver %></td>
         </tr>
       </tbody>

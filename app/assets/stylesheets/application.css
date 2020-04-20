@@ -14,14 +14,21 @@
  *= require_self
  */
  
- h1 {
-  color: white;
-  background-color: SteelBlue;
+ @media only screen and (max-width: 400px) {
+  * {
+    font-size: 2vw;
+  }
+  .btn {
+    font-size: 1.8vw;
+  }
 }
- h2 {
-  color: white;
-  background-color: SteelBlue;
+
+img {
+ height: auto;
+ width: 100%;
 }
-.link-color{
-  color: "red";
+
+.table {
+ table-layout: fixed;
+ width: 100%;
 }
